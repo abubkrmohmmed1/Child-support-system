@@ -64,6 +64,7 @@
                     <li class="nav-item no-print"><a href="{{ route('accounts.budget') }}" style="color: #f8f9fa;">تقرير الميزانية</a></li>
                     <li class="nav-item no-print"><a href="{{ route('accounts.debts') }}" style="color: #ffc107;">المديونيات والتحصيل</a></li>
                     <li class="nav-item no-print"><a href="{{ route('accounts.settings') }}" style="color: #17a2b8;">الإعدادات</a></li>
+                    
                     <li class="nav-item">
                         <form action="{{ route('logout') }}" method="POST" class="d-inline">
                             @csrf

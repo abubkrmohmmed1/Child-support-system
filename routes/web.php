@@ -77,5 +77,16 @@ Route::middleware(['auth'])->prefix('accounts')->name('accounts.')->group(functi
 
 // Define the route for updating settings
 Route::post('/settings/update', [SettingsController::class, 'update'])->name('settings.update');
+// مسارات الخطابات الرسمية
+Route::middleware(['auth'])->prefix('letters')->name('letters.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\LetterController::class, 'index'])->name('index');
+    Route::get('/create', [\App\Http\Controllers\LetterController::class, 'create'])->name('create');
+    Route::post('/store', [\App\Http\Controllers\LetterController::class, 'store'])->name('store');
+    Route::get('/{id}', [\App\Http\Controllers\LetterController::class, 'show'])->name('show');
+    Route::get('/{id}/edit', [\App\Http\Controllers\LetterController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [\App\Http\Controllers\LetterController::class, 'update'])->name('update');
+    Route::delete('/{id}', [\App\Http\Controllers\LetterController::class, 'destroy'])->name('destroy');
+    Route::get('/{id}/print', [\App\Http\Controllers\LetterController::class, 'print'])->name('print');
+});
 
 

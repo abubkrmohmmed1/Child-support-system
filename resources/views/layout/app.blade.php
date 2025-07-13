@@ -79,8 +79,8 @@
                     <a class="btn btn-outline-dark" href="{{ route('reports.index', ['child_id' => 1]) }}">
                         <i class="bi bi-file-earmark-text"></i> التقارير
                     </a>
-                    <a class="btn btn-outline-primary me-2" href="{{ route('attendance.print') }}">
-                        <i class="bi bi-printer"></i> طباعة سجل الحضور
+                    <a class="btn btn-outline-primary me-2" href="{{ route('letters.index') }}">
+                        <i class="bi bi-envelope"></i> الخطابات الرسمية
                     </a>
                     <a class="btn btn-outline-warning me-2" href="{{ route('admin.change-password') }}">
                         <i class="bi bi-key"></i> تغيير كلمة المرور
