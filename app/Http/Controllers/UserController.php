@@ -10,6 +10,9 @@ class UserController extends Controller
 {
     public function store(Request $request)
     {
+        if (!auth()->check() || auth()->user()->role !== 'admin') {
+            abort(403, 'Unauthorized');
+        }
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',

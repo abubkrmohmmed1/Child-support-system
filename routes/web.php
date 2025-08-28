@@ -16,8 +16,8 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
-// إضافة مستخدم جديد (للادمن فقط)
-Route::middleware(['auth', 'admin'])->post('/users/store', [UserController::class, 'store'])->name('users.store');
+// إضافة مستخدم جديد (للادمن فقط، التحقق داخل الكنترولر)
+Route::post('/users/store', [UserController::class, 'store'])->middleware('auth')->name('users.store');
 
 
 
