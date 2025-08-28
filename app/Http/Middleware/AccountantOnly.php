@@ -9,7 +9,7 @@ class AccountantOnly
 {
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->email === 'abdalmoaen@gmail.com') {
+        if (Auth::check() && Auth::user()->role === 'accountant') {
             return $next($request);
         }
         abort(403, 'Unauthorized');

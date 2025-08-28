@@ -5,6 +5,40 @@
 @section('content')
 <div class="container">
     <h2 class="mb-4">الإعدادات</h2>
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+
+    <!-- نموذج إضافة مستخدم جديد -->
+    <div class="card mb-4">
+        <div class="card-header bg-success text-white">إضافة مستخدم جديد</div>
+        <div class="card-body">
+            <form action="{{ route('users.store') }}" method="POST">
+                @csrf
+                <div class="mb-3">
+                    <label for="name" class="form-label">الاسم</label>
+                    <input type="text" name="name" id="name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">البريد الإلكتروني</label>
+                    <input type="email" name="email" id="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">كلمة المرور</label>
+                    <input type="password" name="password" id="password" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="role" class="form-label">الدور</label>
+                    <select name="role" id="role" class="form-select" required>
+                        <option value="admin">مدير</option>
+                        <option value="accountant">محاسب</option>
+                        <option value="user">مستخدم عادي</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">إضافة المستخدم</button>
+            </form>
+        </div>
+    </div>
     <form action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('POST')

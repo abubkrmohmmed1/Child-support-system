@@ -1,3 +1,5 @@
+
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -8,11 +10,16 @@ use App\Http\Controllers\CaseEvaluationController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AccountsController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\UserController;
 
 // الصفحة الرئيسية - ترحيبية
 Route::get('/', function () {
     return view('welcome');
 });
+// إضافة مستخدم جديد (للادمن فقط)
+Route::middleware(['auth', 'admin'])->post('/users/store', [UserController::class, 'store'])->name('users.store');
+
+
 
 // تسجيل الدخول والتسجيل
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');

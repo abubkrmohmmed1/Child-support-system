@@ -9,7 +9,7 @@ class AdminMiddleware
 {
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->email === 'nahid@gmail.com') {
+        if (Auth::check() && Auth::user()->role === 'admin') {
             return $next($request);
         }
         abort(403, 'Unauthorized');

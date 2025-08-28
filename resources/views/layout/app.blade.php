@@ -106,6 +106,12 @@
             <img src="{{ asset('assets/images/logo.png') }}" alt="شعار المؤسسة" style="height:100px;">
             <h2>مركز علقم لتأهيل الإعاقة الذهنية</h2>
         </div>
+        @if(auth()->check() && auth()->user()->role === 'admin')
+            <div class="mb-3">
+                <a href="{{ route('accounts.dashboard') }}" class="btn btn-outline-primary me-2">لوحة الحسابات المالية</a>
+                <a href="{{ route('dashboard') }}" class="btn btn-outline-secondary">لوحة النظام الرئيسية</a>
+            </div>
+        @endif
         @yield('content')
     </div>
 </body>

@@ -53,17 +53,19 @@
             </button>
             <div class="collapse navbar-collapse no-print" id="navbarAccounts">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item no-print"><a href="{{ route('accounts.dashboard') }}" style="color: #0d6efd;">الرئيسية</a></li>
-                    <li class="nav-item no-print"><a href="{{ route('accounts.revenues') }}" style="color: #0d6efd;">الإيرادات</a></li>
-                    <li class="nav-item no-print"><a href="{{ route('accounts.expenses') }}" style="color: #28a745;">المصروفات</a></li>
-                    <li class="nav-item no-print"><a href="{{ route('accounts.categories') }}" style="color: #ffc107;">بنود الحسابات</a></li>
-                    <li class="nav-item no-print"><a href="{{ route('accounts.accounts') }}" style="color: #17a2b8;">طرق الدفع</a></li>
-                    <li class="nav-item no-print"><a href="{{ route('accounts.reports') }}" style="color: #6c757d;">التقارير المالية</a></li>
-                    <li class="nav-item no-print"><a href="{{ route('accounts.closing') }}" style="color: #dc3545;">ترحيل الحسابات الختامية</a></li>
-                    <li class="nav-item no-print"><a href="{{ route('accounts.filters') }}" style="color: #343a40;">فلاتر واستعلامات</a></li>
-                    <li class="nav-item no-print"><a href="{{ route('accounts.budget') }}" style="color: #f8f9fa;">تقرير الميزانية</a></li>
-                    <li class="nav-item no-print"><a href="{{ route('accounts.debts') }}" style="color: #ffc107;">المديونيات والتحصيل</a></li>
-                    <li class="nav-item no-print"><a href="{{ route('accounts.settings') }}" style="color: #17a2b8;">الإعدادات</a></li>
+                    @if(auth()->check() && (auth()->user()->role === 'admin' || auth()->user()->role === 'accountant'))
+                        <li class="nav-item no-print"><a href="{{ route('accounts.dashboard') }}" style="color: #0d6efd;">الرئيسية</a></li>
+                        <li class="nav-item no-print"><a href="{{ route('accounts.revenues') }}" style="color: #0d6efd;">الإيرادات</a></li>
+                        <li class="nav-item no-print"><a href="{{ route('accounts.expenses') }}" style="color: #28a745;">المصروفات</a></li>
+                        <li class="nav-item no-print"><a href="{{ route('accounts.categories') }}" style="color: #ffc107;">بنود الحسابات</a></li>
+                        <li class="nav-item no-print"><a href="{{ route('accounts.accounts') }}" style="color: #17a2b8;">طرق الدفع</a></li>
+                        <li class="nav-item no-print"><a href="{{ route('accounts.reports') }}" style="color: #6c757d;">التقارير المالية</a></li>
+                        <li class="nav-item no-print"><a href="{{ route('accounts.closing') }}" style="color: #dc3545;">ترحيل الحسابات الختامية</a></li>
+                        <li class="nav-item no-print"><a href="{{ route('accounts.filters') }}" style="color: #343a40;">فلاتر واستعلامات</a></li>
+                        <li class="nav-item no-print"><a href="{{ route('accounts.budget') }}" style="color: #f8f9fa;">تقرير الميزانية</a></li>
+                        <li class="nav-item no-print"><a href="{{ route('accounts.debts') }}" style="color: #ffc107;">المديونيات والتحصيل</a></li>
+                        <li class="nav-item no-print"><a href="{{ route('accounts.settings') }}" style="color: #17a2b8;">الإعدادات</a></li>
+                    @endif
                     
                     <li class="nav-item">
                         <form action="{{ route('logout') }}" method="POST" class="d-inline">
@@ -76,6 +78,12 @@
         </div>
     </nav>
     <div class="container mt-4">
+        @if(auth()->check() && auth()->user()->role === 'admin')
+            <div class="mb-3">
+                <a href="{{ route('dashboard') }}" class="btn btn-outline-primary me-2">لوحة النظام الرئيسية</a>
+                <a href="{{ route('accounts.dashboard') }}" class="btn btn-outline-secondary">لوحة الحسابات المالية</a>
+            </div>
+        @endif
         @yield('content')
     </div>
 </body>

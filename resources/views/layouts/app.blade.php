@@ -8,6 +8,12 @@
 </head>
 <body>
     <div class="container mt-4">
+        @if(auth()->check() && auth()->user()->role === 'admin')
+            <div class="mb-3">
+                <a href="{{ asset('resources/views/layouts/app.blade.php') }}" class="btn btn-outline-primary me-2">layouts/app.blade.php</a>
+                <a href="{{ asset('resources/views/layout/app.blade.php') }}" class="btn btn-outline-secondary">layout/app.blade.php</a>
+            </div>
+        @endif
         @yield('content')
     </div>
 </body>

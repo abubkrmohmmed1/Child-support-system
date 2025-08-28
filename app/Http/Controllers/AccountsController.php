@@ -9,7 +9,7 @@ class AccountsController extends Controller
 {
     private function authorizeAccountant()
     {
-        if (!Auth::check() || Auth::user()->email !== 'abdalmoaen@gmail.com') {
+        if (!Auth::check() || !in_array(Auth::user()->role, ['admin', 'accountant'])) {
             abort(403, 'Unauthorized');
         }
     }
@@ -319,7 +319,9 @@ class AccountsController extends Controller
 
     public function settings()
     {
-        $this->authorizeAccountant();
+        if (!auth()->check() || auth()->user()->role !== 'admin') {
+            abort(403, 'Unauthorized');
+        }
         return view('accounts.settings');
     }
 }

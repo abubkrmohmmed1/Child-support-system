@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function userActivity()
     {
-        if (auth()->user()->email !== 'nahid@gmail.com') {
+        if (!auth()->user() || (auth()->user()->role ?? null) !== 'admin') {
             abort(403, 'Unauthorized');
         }
 
@@ -36,7 +36,7 @@ class AdminController extends Controller
     
     public function showChangePasswordForm()
     {
-        if (auth()->user()->email !== 'nahid@gmail.com') {
+        if (!auth()->user() || (auth()->user()->role ?? null) !== 'admin') {
             abort(403, 'Unauthorized');
         }
         return view('admin.change_password');
@@ -44,7 +44,7 @@ class AdminController extends Controller
 
     public function changePassword(Request $request)
     {
-        if (auth()->user()->email !== 'nahid@gmail.com') {
+        if (!auth()->user() || (auth()->user()->role ?? null) !== 'admin') {
             abort(403, 'Unauthorized');
         }
         $request->validate([
